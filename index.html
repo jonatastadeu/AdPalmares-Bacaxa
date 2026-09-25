@@ -1,0 +1,56 @@
+<!doctype html><html lang="pt-BR"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17324d"><link rel="manifest" href="manifest.json">
+<title>ADPalmares Bacaxá</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f4f6f8;color:#17212b}
+header{background:#17324d;color:white;padding:20px 16px 12px;position:sticky;top:0;z-index:5}h1{font-size:22px;margin:0}.sub{font-size:13px;opacity:.8}
+nav{display:flex;gap:7px;overflow:auto;margin-top:14px}nav button{background:#ffffff1c;color:white;border:0;border-radius:9px;padding:9px 12px;white-space:nowrap}
+main{max-width:900px;margin:auto;padding:16px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.card{background:white;border:1px solid #e6e9ed;border-radius:15px;padding:16px;box-shadow:0 2px 9px #0000000a}.card b{display:block;margin-top:7px}.small{font-size:12px;color:#66717c}.item{background:white;padding:13px;border-bottom:1px solid #eee}
+.hidden{display:none}.action{border:0;background:#17324d;color:white;border-radius:10px;padding:10px 13px;margin:3px}.back{background:#e7edf2;border:0;color:#17324d;border-radius:9px;padding:9px 12px}
+.section{font-weight:700;color:#17324d;margin:20px 0 10px}@media(min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style></head><body>
+<header><h1>ADPalmares Bacaxá</h1><div class="sub">Gestão pastoral e administrativa</div><nav>
+<button onclick="show('home')">Início</button><button onclick="show('church')">Igreja</button><button onclick="show('pastoral')">Pastoral</button><button onclick="show('ebd')">EBD</button><button onclick="show('ministries')">Ministérios</button><button onclick="show('finance')">Financeiro</button><button onclick="show('reports')">Relatórios</button>
+</nav></header><main>
+<section id="home"><div class="section">Início</div><div class="grid">
+<div class="card" onclick="show('church')">👥<b>Membros</b><span class="small" id="mc"></span></div>
+<div class="card" onclick="show('pastoral')">🙏<b>Acompanhamento pastoral</b><span class="small">Visitas, aconselhamento, oração e discipulado</span></div>
+<div class="card" onclick="show('agenda')">📅<b>Agenda</b><span class="small">Compromissos e atividades</span></div>
+<div class="card" onclick="show('birthdays')">🎂<b>Aniversariantes</b><span class="small">Próximos aniversários</span></div>
+<div class="card" onclick="show('reports')">📊<b>Relatório</b><span class="small">Indicadores da igreja</span></div>
+</div><div class="section">Acesso rápido</div><div class="card">
+<button class="action" onclick="addMember()">+ Membro</button><button class="action" onclick="addPastoral()">+ Registro pastoral</button><button class="action" onclick="addAgenda()">+ Agenda</button></div></section>
+
+<section id="church" class="hidden"><button class="back" onclick="show('home')">← Início</button><h2>Igreja</h2><div class="grid">
+<div class="card">👥<b>Membros</b></div><div class="card">🏠<b>Famílias</b></div><div class="card">🙋<b>Visitantes</b></div><div class="card">🔄<b>Transferências</b></div><div class="card">📜<b>Histórico de membro</b></div></div>
+<div class="section">Membros cadastrados</div><div id="members"></div></section>
+
+<section id="pastoral" class="hidden"><button class="back" onclick="show('home')">← Início</button><h2>Pastoral</h2><div class="grid">
+<div class="card">🏠<b>Visitas</b></div><div class="card">💬<b>Aconselhamentos</b></div><div class="card">🙏<b>Pedidos de oração</b></div><div class="card">📖<b>Discipulado</b></div><div class="card">🌱<b>Novos convertidos</b></div></div>
+<div class="section">Registros</div><div id="plist"></div></section>
+
+<section id="ebd" class="hidden"><button class="back" onclick="show('home')">← Início</button><h2>EBD</h2><div class="grid">
+<div class="card">📚<b>Classes</b></div><div class="card">👨‍🏫<b>Professores</b></div><div class="card">👨‍🎓<b>Alunos</b></div><div class="card">✅<b>Presença</b></div><div class="card">🎂<b>Aniversários</b></div></div></section>
+
+<section id="ministries" class="hidden"><button class="back" onclick="show('home')">← Início</button><h2>Ministérios</h2><div class="grid">
+<div class="card">👑<b>Líderes</b></div><div class="card">👥<b>Integrantes</b></div><div class="card">🗓️<b>Escalas</b></div><div class="card">🎯<b>Funções</b></div></div></section>
+
+<section id="finance" class="hidden"><button class="back" onclick="show('home')">← Início</button><h2>Financeiro</h2><div class="grid">
+<div class="card">💵<b>Dízimos</b></div><div class="card">🎁<b>Ofertas</b></div><div class="card">💳<b>Despesas</b></div><div class="card">📅<b>Contas</b></div><div class="card">🏷️<b>Categorias</b></div><div class="card">📊<b>Relatório mensal</b></div></div></section>
+
+<section id="reports" class="hidden"><button class="back" onclick="show('home')">← Início</button><h2>Relatórios</h2><div class="card" id="report"></div></section>
+<section id="agenda" class="hidden"><button class="back" onclick="show('home')">← Início</button><h2>Agenda</h2><div id="agendaList"></div></section>
+<section id="birthdays" class="hidden"><button class="back" onclick="show('home')">← Início</button><h2>Aniversariantes</h2><div class="card">Pronto para receber datas de nascimento na próxima evolução.</div></section>
+</main>
+<script>
+let db=JSON.parse(localStorage.getItem('adpalmares_bacaxa_v2')||'{"members":[],"pastoral":[],"agenda":[]}');
+function save(){localStorage.setItem('adpalmares_bacaxa_v2',JSON.stringify(db));render()}
+function show(id){document.querySelectorAll('main section').forEach(x=>x.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');render()}
+function addMember(){let n=prompt('Nome do membro:');if(!n)return;db.members.push({name:n,phone:prompt('Telefone (opcional):')||''});save();show('church')}
+function addPastoral(){let n=prompt('Nome da pessoa:');if(!n)return;db.pastoral.push({name:n,type:prompt('Tipo: visita, aconselhamento, oração ou discipulado')||'Acompanhamento',note:prompt('Observação:')||'',date:new Date().toLocaleDateString('pt-BR')});save();show('pastoral')}
+function addAgenda(){let t=prompt('Compromisso:');if(!t)return;db.agenda.push({title:t,date:prompt('Data (dd/mm/aaaa):')||''});save();show('agenda')}
+function e(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){mc.textContent=db.members.length+' cadastrados';members.innerHTML=db.members.length?db.members.map(m=>'<div class="item"><b>'+e(m.name)+'</b><div class="small">'+e(m.phone||'Sem telefone')+'</div></div>').join(''):'<div class="card">Nenhum membro cadastrado.</div>';plist.innerHTML=db.pastoral.length?db.pastoral.slice().reverse().map(x=>'<div class="item"><b>'+e(x.name)+'</b> — '+e(x.type)+'<div class="small">'+e(x.date)+' · '+e(x.note)+'</div></div>').join(''):'<div class="card">Nenhum registro pastoral.</div>';agendaList.innerHTML=db.agenda.length?db.agenda.map(x=>'<div class="item"><b>'+e(x.date)+'</b> — '+e(x.title)+'</div>').join(''):'<div class="card">Nenhum compromisso.</div>';report.innerHTML='<b>Resumo</b><p>Membros: '+db.members.length+'</p><p>Registros pastorais: '+db.pastoral.length+'</p><p>Compromissos: '+db.agenda.length+'</p>'}render();
+</script></body></html>
